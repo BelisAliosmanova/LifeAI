@@ -10,6 +10,21 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "BelisAliosmanova"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/BelisAliosmanova/LifeAI.git",
+    "accountId": "a9e64eaa-e818-4106-8acd-7f56e3dadcf0"
+  }
+}]]></component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
@@ -21,6 +36,7 @@
   "associatedIndex": 3
 }]]></component>
   <component name="ProjectId" id="2lBrFetyC0znExVOb9lCDiqQ82P" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -29,13 +45,15 @@
   "keyToString": {
     "Application.LifeAiApplication.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Lenovo/Desktop/LifeAI/src/main/resources"
+    "last_opened_file_path": "C:/Users/Lenovo/Desktop/LifeAI/server"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Lenovo\Desktop\LifeAI\server" />
       <recent name="C:\Users\Lenovo\Desktop\LifeAI\src\main\resources" />
       <recent name="C:\Users\Lenovo\Desktop\LifeAI" />
     </key>
