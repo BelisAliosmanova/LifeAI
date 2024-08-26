@@ -1,6 +1,6 @@
-# Pull Request Template for Cool School
+# Pull Request Template for Life
 
-Thank you for your contribution to the Cool School project! Before submitting your pull request (PR), please ensure you have completed the following steps and checked all the boxes where applicable. This helps us to review and merge your changes faster.
+Thank you for your contribution to the Life project! Before submitting your pull request (PR), please ensure you have completed the following steps and checked all the boxes where applicable. This helps us to review and merge your changes faster.
 
 ## Description
 
@@ -12,7 +12,7 @@ Please provide a clear and concise description of the changes you're proposing. 
 
 ## Type of Change
 
-What type of change does your PR introduce to Cool School? Please put an `x` in the boxes that apply.
+What type of change does your PR introduce to Life? Please put an `x` in the boxes that apply.
 
 - [ ] Bug fix (non-breaking change which fixes an issue)
 - [ ] New feature (non-breaking change which adds functionality)
@@ -35,5 +35,5 @@ Before submitting your PR, please review and confirm the following:
 
 If there's anything else you'd like the reviewers to know about your changes, please include it here.
 
-Thank you for your contributions to Cool School!
+Thank you for your contributions to Life!
 
