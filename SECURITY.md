@@ -42,4 +42,4 @@ We will release patches for security vulnerabilities as soon as possible and wil
 
 We also encourage our community to follow best security practices when using or contributing to Local Web. This includes keeping your systems up to date with the latest patches and being cautious with how you handle sensitive information.
 
-Thank you for helping to keep Local Web and its users safe.
+Thank you for helping to keep Life AI and its users safe.
