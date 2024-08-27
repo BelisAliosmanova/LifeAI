@@ -4,37 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="06069905-8709-46fe-a36d-6df9178320a9" name="Changes" comment="crawler https://life.bbca.bg/ and save the data into vector database">
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/lifeAI/LifeAI/config/ApplicationConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/lifeAI/LifeAI/config/FrontendConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/lifeAI/LifeAI/config/LocaleInterceptor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/lifeAI/LifeAI/config/WebConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/lifeAI/LifeAI/controllers/AIAssistanceController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/lifeAI/LifeAI/exceptions/ErrorProcessingAIResponseException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/lifeAI/LifeAI/exceptions/UnableToExtractContentFromAIResponseException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/lifeAI/LifeAI/exceptions/common/AccessDeniedException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/lifeAI/LifeAI/exceptions/common/ApiException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/lifeAI/LifeAI/exceptions/common/BadRequestException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/lifeAI/LifeAI/exceptions/common/InternalServerErrorException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/lifeAI/LifeAI/exceptions/common/NoSuchElementException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/lifeAI/LifeAI/exceptions/common/TooManyRequestsException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/lifeAI/LifeAI/exceptions/common/UnauthorizedException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/lifeAI/LifeAI/exceptions/common/UnsupportedMediaTypeException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/lifeAI/LifeAI/exceptions/common/ValidationException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/lifeAI/LifeAI/services/AIAssistanceService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/lifeAI/LifeAI/services/impl/AIAssistanceServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/resources/messages/messages_bg.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/resources/messages/messages_en.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+    <list default="true" id="06069905-8709-46fe-a36d-6df9178320a9" name="Changes" comment="ask AI - generateAnswer">
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/lifeAI/LifeAI/controllers/ChatController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/lifeAI/LifeAI/services/impl/OpenAIService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/server/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/lifeAI/LifeAI/controllers/ExcelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/lifeAI/LifeAI/controllers/ExcelController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/lifeAI/LifeAI/crawler/Crawler.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/lifeAI/LifeAI/crawler/Crawler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/lifeAI/LifeAI/crawler/CrawlerFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/lifeAI/LifeAI/crawler/CrawlerFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/lifeAI/LifeAI/services/ExcelReaderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/lifeAI/LifeAI/services/impl/ExcelReaderService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/lifeAI/LifeAI/services/PageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/lifeAI/LifeAI/services/impl/PageService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/lifeAI/LifeAI/controllers/AIAssistanceController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/lifeAI/LifeAI/services/impl/AIAssistanceServiceImpl.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -218,7 +193,15 @@
       <option name="project" value="LOCAL" />
       <updated>1724759216722</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="ask AI - generateAnswer">
+      <option name="closed" value="true" />
+      <created>1724768352224</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1724768352225</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -226,21 +209,27 @@
     <MESSAGE value="downgrade java version" />
     <MESSAGE value="crawler https://life.bbca.bg/" />
     <MESSAGE value="crawler https://life.bbca.bg/ and save the data into vector database" />
-    <option name="LAST_COMMIT_MESSAGE" value="crawler https://life.bbca.bg/ and save the data into vector database" />
+    <MESSAGE value="ask AI - generateAnswer" />
+    <option name="LAST_COMMIT_MESSAGE" value="ask AI - generateAnswer" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/server/src/main/java/com/lifeAI/LifeAI/services/impl/AIAssistanceServiceImpl.java</url>
-          <line>37</line>
-          <properties class="com.lifeAI.LifeAI.services.impl.AIAssistanceServiceImpl" method="interactWithAssistant">
+          <url>file://$PROJECT_DIR$/server/src/main/java/com/lifeAI/LifeAI/services/impl/OpenAIService.java</url>
+          <line>34</line>
+          <properties class="com.lifeAI.LifeAI.services.impl.OpenAIService" method="getThreadDetails">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
           </properties>
-          <option name="timeStamp" value="4" />
+          <option name="timeStamp" value="17" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+    <pin-to-top-manager>
+      <pinned-members>
+        <PinnedItemInfo parentTag="org.springframework.http.HttpEntity" memberName="headers" />
+      </pinned-members>
+    </pin-to-top-manager>
   </component>
 </project>
