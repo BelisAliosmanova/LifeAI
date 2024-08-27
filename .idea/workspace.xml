@@ -5,7 +5,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="06069905-8709-46fe-a36d-6df9178320a9" name="Changes" comment="downgrade java version">
-      <change afterPath="$PROJECT_DIR$/server/src/test/java/com/lifeAI/LifeAI/LifeAiApplicationTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/lifeAI/LifeAI/controllers/CrawlerController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/lifeAI/LifeAI/controllers/ExcelController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/lifeAI/LifeAI/crawler/Crawler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/lifeAI/LifeAI/crawler/CrawlerExtractor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/lifeAI/LifeAI/crawler/CrawlerFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/lifeAI/LifeAI/crawler/CrawlerService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/lifeAI/LifeAI/model/Page.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/lifeAI/LifeAI/model/Site.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/lifeAI/LifeAI/respository/PageRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/lifeAI/LifeAI/respository/SiteRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/lifeAI/LifeAI/services/ExcelReaderService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/lifeAI/LifeAI/services/PageService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/lifeAI/LifeAI/utils/MapUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/resources/static/files/pnp.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/lifeAI/LifeAI/LifeAiApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/lifeAI/LifeAI/LifeAiApplication.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,6 +70,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.LifeAiApplication.executor": "Run",
+    "Docker.server: Compose Deployment.executor": "Run",
     "JUnit.LifeAiApplicationTests.executor": "Run",
     "Maven.LifeAI [clean,test,install].executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -60,20 +78,27 @@
     "git-widget-placeholder": "master",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Lenovo/Desktop/LifeAI/server"
+    "last_opened_file_path": "C:/Users/Lenovo/Desktop/LifeAI/server/src/main/java/com/lifeAI/LifeAI/controllers"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Lenovo\Desktop\LifeAI\server" />
-      <recent name="C:\Users\Lenovo\Desktop\LifeAI\src\main\resources" />
-      <recent name="C:\Users\Lenovo\Desktop\LifeAI" />
+      <recent name="C:\Users\Lenovo\Desktop\LifeAI\server\src\main\java\com\lifeAI\LifeAI\controllers" />
+      <recent name="C:\Users\Lenovo\Desktop\LifeAI\server\src\main\java\com\lifeAI\LifeAI\services" />
+      <recent name="C:\Users\Lenovo\Desktop\LifeAI\server\src\main\java\com\lifeAI\LifeAI" />
+      <recent name="C:\Users\Lenovo\Desktop\LifeAI\server\src\main\java\com\lifeAI\LifeAI\model" />
+      <recent name="C:\Users\Lenovo\Desktop\LifeAI\server\src\main\java\com\lifeAI\LifeAI\crawler" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Lenovo\Desktop\LifeAI\server\src\main\resources\static\files" />
+      <recent name="C:\Users\Lenovo\Desktop\LifeAI\server\src\main\resources" />
       <recent name="C:\Users\Lenovo\Desktop\LifeAI\server" />
     </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.lifeAI.LifeAI.utils" />
+    </key>
   </component>
-  <component name="RunManager" selected="JUnit.LifeAiApplicationTests">
+  <component name="RunManager" selected="Application.LifeAiApplication">
     <configuration name="LifeAiApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <envs>
         <env name="DB_HOST" value="localhost" />
@@ -87,7 +112,7 @@
       <module name="LifeAI" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.lifeAI.LifeAI.*" />
+          <option name="PATTERN" value="com.lifeAI.LifeAI.respository.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -99,7 +124,7 @@
       <module name="LifeAI" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.lifeAI.LifeAI.*" />
+          <option name="PATTERN" value="com.lifeAI.LifeAI.respository.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -110,14 +135,28 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
+      <deployment type="docker-compose.yml" />
+      <method v="2" />
+    </configuration>
+    <configuration name="server: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="sourceFilePath" value="server/docker-compose.yml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
     <list>
       <item itemvalue="Application.LifeAiApplication" />
+      <item itemvalue="Docker.server: Compose Deployment" />
       <item itemvalue="JUnit.LifeAiApplicationTests" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.LifeAiApplicationTests" />
         <item itemvalue="Application.LifeAiApplication" />
+        <item itemvalue="Docker.server: Compose Deployment" />
+        <item itemvalue="JUnit.LifeAiApplicationTests" />
       </list>
     </recent_temporary>
   </component>
