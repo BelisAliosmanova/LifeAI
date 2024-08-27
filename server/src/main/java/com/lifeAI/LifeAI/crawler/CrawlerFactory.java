@@ -2,7 +2,7 @@ package com.lifeAI.LifeAI.crawler;
 
 import com.lifeAI.LifeAI.respository.PageRepository;
 import com.lifeAI.LifeAI.respository.SiteRepository;
-import com.lifeAI.LifeAI.services.PageService;
+import com.lifeAI.LifeAI.services.impl.PageService;
 import edu.uci.ics.crawler4j.crawler.CrawlController;
 import edu.uci.ics.crawler4j.crawler.WebCrawler;
 import lombok.RequiredArgsConstructor;

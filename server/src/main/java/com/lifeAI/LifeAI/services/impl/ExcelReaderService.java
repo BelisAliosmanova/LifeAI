@@ -1,4 +1,4 @@
-package com.lifeAI.LifeAI.services;
+package com.lifeAI.LifeAI.services.impl;
 
 import com.lifeAI.LifeAI.model.Site;
 import com.lifeAI.LifeAI.respository.SiteRepository;
