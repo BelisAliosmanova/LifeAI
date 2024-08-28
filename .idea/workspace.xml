@@ -4,12 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="06069905-8709-46fe-a36d-6df9178320a9" name="Changes" comment="ask AI - generateAnswer">
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/lifeAI/LifeAI/controllers/ChatController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/lifeAI/LifeAI/services/impl/OpenAIService.java" afterDir="false" />
+    <list default="true" id="06069905-8709-46fe-a36d-6df9178320a9" name="Changes" comment="attempt to make trained AI assistant based on documents">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/lifeAI/LifeAI/controllers/AIAssistanceController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/lifeAI/LifeAI/services/impl/AIAssistanceServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/lifeAI/LifeAI/services/impl/OpenAIService.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/lifeAI/LifeAI/services/impl/OpenAIService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,6 +59,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.LifeAiApplication.executor": "Run",
+    "Docker.server.pgvector: Compose Deployment.executor": "Run",
     "Docker.server: Compose Deployment.executor": "Run",
     "JUnit.LifeAiApplicationTests.executor": "Run",
     "Maven.LifeAI [clean,test,install].executor": "Run",
@@ -128,7 +126,9 @@
       </method>
     </configuration>
     <configuration default="true" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
-      <deployment type="docker-compose.yml" />
+      <deployment type="docker-compose.yml">
+        <settings />
+      </deployment>
       <method v="2" />
     </configuration>
     <configuration name="server: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
@@ -139,14 +139,29 @@
       </deployment>
       <method v="2" />
     </configuration>
+    <configuration name="server.pgvector: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="services">
+            <list>
+              <option value="pgvector" />
+            </list>
+          </option>
+          <option name="sourceFilePath" value="server/docker-compose.yml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
     <list>
       <item itemvalue="Application.LifeAiApplication" />
+      <item itemvalue="Docker.server.pgvector: Compose Deployment" />
       <item itemvalue="Docker.server: Compose Deployment" />
       <item itemvalue="JUnit.LifeAiApplicationTests" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.LifeAiApplication" />
+        <item itemvalue="Docker.server.pgvector: Compose Deployment" />
         <item itemvalue="Docker.server: Compose Deployment" />
         <item itemvalue="JUnit.LifeAiApplicationTests" />
       </list>
@@ -201,7 +216,15 @@
       <option name="project" value="LOCAL" />
       <updated>1724768352225</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="attempt to make trained AI assistant based on documents">
+      <option name="closed" value="true" />
+      <created>1724778564361</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1724778564362</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -210,19 +233,30 @@
     <MESSAGE value="crawler https://life.bbca.bg/" />
     <MESSAGE value="crawler https://life.bbca.bg/ and save the data into vector database" />
     <MESSAGE value="ask AI - generateAnswer" />
-    <option name="LAST_COMMIT_MESSAGE" value="ask AI - generateAnswer" />
+    <MESSAGE value="attempt to make trained AI assistant" />
+    <MESSAGE value="attempt to make trained AI assistant based on documents" />
+    <option name="LAST_COMMIT_MESSAGE" value="attempt to make trained AI assistant based on documents" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/server/src/main/java/com/lifeAI/LifeAI/services/impl/OpenAIService.java</url>
-          <line>34</line>
+          <line>33</line>
           <properties class="com.lifeAI.LifeAI.services.impl.OpenAIService" method="getThreadDetails">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
           </properties>
-          <option name="timeStamp" value="17" />
+          <option name="timeStamp" value="22" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/server/src/main/java/com/lifeAI/LifeAI/services/impl/OpenAIService.java</url>
+          <line>25</line>
+          <properties class="com.lifeAI.LifeAI.services.impl.OpenAIService" method="interactWithAssistant">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="23" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
