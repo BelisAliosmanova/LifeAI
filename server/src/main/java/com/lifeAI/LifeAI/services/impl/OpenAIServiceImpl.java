@@ -1,6 +1,7 @@
 package com.lifeAI.LifeAI.services.impl;
 import com.lifeAI.LifeAI.exceptions.ErrorProcessingAIResponseException;
 import com.lifeAI.LifeAI.services.OpenAIService;
+import org.apache.poi.ss.formula.functions.T;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.MessageSource;
 import org.springframework.http.HttpEntity;
@@ -12,6 +13,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Service
 public class OpenAIServiceImpl implements OpenAIService {
@@ -31,15 +34,17 @@ public class OpenAIServiceImpl implements OpenAIService {
         this.messageSource = messageSource;
     }
 
+    @Override
     public String interactWithAssistant(String userMessage){
         if (userMessage == null || userMessage.isEmpty()){
             throw  new ErrorProcessingAIResponseException(messageSource);
         }
+
         String threadId = createNewThread(userMessage);
         addMessageToThread(threadId, userMessage);
         String runId = runAssistant(threadId);
         runAssistantResponse(threadId, runId);
-        return getThreadDetails(threadId);
+        return getFullAssistantResponseText(threadId);
     }
 
     private String createNewThread(String message) {
@@ -64,6 +69,7 @@ public class OpenAIServiceImpl implements OpenAIService {
         );
 
         Map<String, Object> responseBody = response.getBody();
+
         if (responseBody != null && responseBody.containsKey("id")) {
             return responseBody.get("id").toString(); // Return the thread ID
         } else {
@@ -76,7 +82,7 @@ public class OpenAIServiceImpl implements OpenAIService {
         HttpHeaders headers = createHeaders();
 
         Map<String, String> message = new HashMap<>();
-        message.put("role", "user"); // Add 'role' parameter
+        message.put("role", "user");
         message.put("content", messageContent);
 
         HttpEntity<Map<String, String>> entity = new HttpEntity<>(message, headers);
@@ -85,7 +91,7 @@ public class OpenAIServiceImpl implements OpenAIService {
     }
 
     private String runAssistant(String threadId) {
-        String url = String.format("https://api.openai.com/v1/threads/%s/runs", threadId); // Adjust to the correct endpoint if needed
+        String url = String.format("https://api.openai.com/v1/threads/%s/runs", threadId);
         HttpHeaders headers = createHeaders();
 
         Map<String, String> body = Collections.singletonMap("assistant_id", assistantId);
@@ -132,7 +138,7 @@ public class OpenAIServiceImpl implements OpenAIService {
                         System.out.println("Status: " + status);
                     }
                 } else {
-                    throw new RuntimeException("Unexpected response structure: " + responseBody);
+                    throw new ErrorProcessingAIResponseException(messageSource);
                 }
 
             } catch (InterruptedException e) {
@@ -146,12 +152,11 @@ public class OpenAIServiceImpl implements OpenAIService {
         }
     }
 
-    public String getThreadDetails(String threadId){
-        String url = String.format("https://api.openai.com/v1/threads/%s/messages", threadId); // Endpoint for fetching a thread
+    private String getFullAssistantResponseText(String threadId) {
+        String url = String.format("https://api.openai.com/v1/threads/%s/messages", threadId);
 
         HttpHeaders headers = createHeaders();
         HttpEntity<String> entity = new HttpEntity<>(headers);
-
 
         ResponseEntity<Map> response = restTemplate.exchange(
                 url,
@@ -161,9 +166,23 @@ public class OpenAIServiceImpl implements OpenAIService {
         );
 
         if (response.getStatusCode().is2xxSuccessful()) {
-            return Objects.requireNonNull(response.getBody()).toString(); // Return the response body if the request was successful
+            String responseBodyString = Objects.requireNonNull(response).toString();
+
+            int valueStartIndex = responseBodyString.indexOf("value=");
+            if (valueStartIndex == -1) {
+                throw new IllegalStateException("Could not find 'value=' in the response.");
+            }
+
+            valueStartIndex += "value=".length();
+
+            int annotationsStartIndex = responseBodyString.indexOf("annotations", valueStartIndex);
+            if (annotationsStartIndex == -1) {
+                annotationsStartIndex = responseBodyString.length();
+            }
+
+            return responseBodyString.substring(valueStartIndex, annotationsStartIndex).trim();
         } else {
-            throw new RuntimeException("Failed to fetch thread details, status code: " + response.getStatusCode());
+            throw new ErrorProcessingAIResponseException(messageSource);
         }
     }
 
