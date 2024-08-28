@@ -1,5 +1,8 @@
 package com.lifeAI.LifeAI.services.impl;
+import com.lifeAI.LifeAI.exceptions.ErrorProcessingAIResponseException;
+import com.lifeAI.LifeAI.services.OpenAIService;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.MessageSource;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -11,7 +14,7 @@ import org.springframework.web.client.RestTemplate;
 import java.util.*;
 
 @Service
-public class OpenAIService {
+public class OpenAIServiceImpl implements OpenAIService {
 
     @Value("${spring.ai.openai.api-key}")
     private String apiKey;
@@ -21,37 +24,22 @@ public class OpenAIService {
 
     private final RestTemplate restTemplate;
 
-    public OpenAIService(RestTemplate restTemplate) {
+    private final MessageSource messageSource;
+
+    public OpenAIServiceImpl(RestTemplate restTemplate, MessageSource messageSource) {
         this.restTemplate = restTemplate;
+        this.messageSource = messageSource;
     }
 
-    public String interactWithAssistant(String userMessage) throws InterruptedException {
+    public String interactWithAssistant(String userMessage){
+        if (userMessage == null || userMessage.isEmpty()){
+            throw  new ErrorProcessingAIResponseException(messageSource);
+        }
         String threadId = createNewThread(userMessage);
         addMessageToThread(threadId, userMessage);
         String runId = runAssistant(threadId);
         runAssistantResponse(threadId, runId);
         return getThreadDetails(threadId);
-    }
-
-    public String getThreadDetails(String threadId) throws InterruptedException {
-        String url = String.format("https://api.openai.com/v1/threads/%s/messages", threadId); // Endpoint for fetching a thread
-
-        HttpHeaders headers = createHeaders();
-        HttpEntity<String> entity = new HttpEntity<>(headers);
-
-
-        ResponseEntity<Map> response = restTemplate.exchange(
-                url,
-                HttpMethod.GET,
-                entity,
-                Map.class
-        );
-
-        if (response.getStatusCode().is2xxSuccessful()) {
-            return Objects.requireNonNull(response.getBody()).toString(); // Return the response body if the request was successful
-        } else {
-            throw new RuntimeException("Failed to fetch thread details, status code: " + response.getStatusCode());
-        }
     }
 
     private String createNewThread(String message) {
@@ -82,14 +70,6 @@ public class OpenAIService {
             throw new RuntimeException("Failed to create a new thread, no ID returned.");
         }
     }
-
-    private Map<String, String> createMessage(String role, String content) {
-        Map<String, String> message = new HashMap<>();
-        message.put("role", role);
-        message.put("content", content);
-        return message;
-    }
-
 
     private void addMessageToThread(String threadId, String messageContent) {
         String url = String.format("https://api.openai.com/v1/threads/%s/messages", threadId);
@@ -164,6 +144,34 @@ public class OpenAIService {
                 break;
             }
         }
+    }
+
+    public String getThreadDetails(String threadId){
+        String url = String.format("https://api.openai.com/v1/threads/%s/messages", threadId); // Endpoint for fetching a thread
+
+        HttpHeaders headers = createHeaders();
+        HttpEntity<String> entity = new HttpEntity<>(headers);
+
+
+        ResponseEntity<Map> response = restTemplate.exchange(
+                url,
+                HttpMethod.GET,
+                entity,
+                Map.class
+        );
+
+        if (response.getStatusCode().is2xxSuccessful()) {
+            return Objects.requireNonNull(response.getBody()).toString(); // Return the response body if the request was successful
+        } else {
+            throw new RuntimeException("Failed to fetch thread details, status code: " + response.getStatusCode());
+        }
+    }
+
+    private Map<String, String> createMessage(String role, String content) {
+        Map<String, String> message = new HashMap<>();
+        message.put("role", role);
+        message.put("content", content);
+        return message;
     }
 
     private HttpHeaders createHeaders() {

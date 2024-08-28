@@ -6,8 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="06069905-8709-46fe-a36d-6df9178320a9" name="Changes" comment="get completed and correct response from AI">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/lifeAI/LifeAI/services/impl/OpenAIService.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/lifeAI/LifeAI/services/impl/OpenAIService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/resources/application.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,21 +55,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.LifeAiApplication.executor": "Run",
-    "Docker.server.pgvector: Compose Deployment.executor": "Run",
-    "Docker.server: Compose Deployment.executor": "Run",
-    "JUnit.LifeAiApplicationTests.executor": "Run",
-    "Maven.LifeAI [clean,test,install].executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "crawlers",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Lenovo/Desktop/LifeAI/server/src/main/java/com/lifeAI/LifeAI/config"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.LifeAiApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.server.pgvector: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.server: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.LifeAiApplicationTests.executor&quot;: &quot;Run&quot;,
+    &quot;Maven.LifeAI [clean,test,install].executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;crawlers&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Lenovo/Desktop/LifeAI/server/src/main/java/com/lifeAI/LifeAI/config&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Lenovo\Desktop\LifeAI\server\src\main\java\com\lifeAI\LifeAI\config" />
@@ -98,7 +96,7 @@
         <env name="DB_PASSWORD" value="root" />
         <env name="DB_PORT" value="5432" />
         <env name="DB_USER" value="postgres" />
-        <env name="OPENAI_API_KEY" value="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" />
+        <env name="OPENAI_API_KEY" value="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" />
       </envs>
       <option name="MAIN_CLASS_NAME" value="com.lifeAI.LifeAI.LifeAiApplication" />
       <module name="LifeAI" />
@@ -249,28 +247,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="get completed and correct response from AI" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/server/src/main/java/com/lifeAI/LifeAI/services/impl/OpenAIService.java</url>
-          <line>38</line>
-          <properties class="com.lifeAI.LifeAI.services.impl.OpenAIService" method="getThreadDetails">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="22" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/server/src/main/java/com/lifeAI/LifeAI/services/impl/OpenAIService.java</url>
-          <line>30</line>
-          <properties class="com.lifeAI.LifeAI.services.impl.OpenAIService" method="interactWithAssistant">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="23" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
     <pin-to-top-manager>
       <pinned-members>
         <PinnedItemInfo parentTag="org.springframework.http.HttpEntity" memberName="headers" />
