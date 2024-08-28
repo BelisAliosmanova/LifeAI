@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="06069905-8709-46fe-a36d-6df9178320a9" name="Changes" comment="attempt to make trained AI assistant based on documents">
+    <list default="true" id="06069905-8709-46fe-a36d-6df9178320a9" name="Changes" comment="get completed and correct response from AI">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/com/lifeAI/LifeAI/services/impl/OpenAIService.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/lifeAI/LifeAI/services/impl/OpenAIService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/resources/application.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -91,6 +92,7 @@
   <component name="RunManager" selected="Application.LifeAiApplication">
     <configuration name="LifeAiApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <envs>
+        <env name="ASSISTANT_ID" value="asst_FqF4m6Ey4lpsFreuHgSRYLXt" />
         <env name="DB_HOST" value="localhost" />
         <env name="DB_NAME" value="life" />
         <env name="DB_PASSWORD" value="root" />
@@ -224,7 +226,15 @@
       <option name="project" value="LOCAL" />
       <updated>1724778564362</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="get completed and correct response from AI">
+      <option name="closed" value="true" />
+      <created>1724843191672</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1724843191672</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -235,14 +245,15 @@
     <MESSAGE value="ask AI - generateAnswer" />
     <MESSAGE value="attempt to make trained AI assistant" />
     <MESSAGE value="attempt to make trained AI assistant based on documents" />
-    <option name="LAST_COMMIT_MESSAGE" value="attempt to make trained AI assistant based on documents" />
+    <MESSAGE value="get completed and correct response from AI" />
+    <option name="LAST_COMMIT_MESSAGE" value="get completed and correct response from AI" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/server/src/main/java/com/lifeAI/LifeAI/services/impl/OpenAIService.java</url>
-          <line>33</line>
+          <line>38</line>
           <properties class="com.lifeAI.LifeAI.services.impl.OpenAIService" method="getThreadDetails">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
@@ -251,7 +262,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/server/src/main/java/com/lifeAI/LifeAI/services/impl/OpenAIService.java</url>
-          <line>25</line>
+          <line>30</line>
           <properties class="com.lifeAI.LifeAI.services.impl.OpenAIService" method="interactWithAssistant">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />

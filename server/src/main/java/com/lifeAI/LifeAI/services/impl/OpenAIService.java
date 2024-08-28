@@ -1,4 +1,5 @@
 package com.lifeAI.LifeAI.services.impl;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -12,8 +13,11 @@ import java.util.*;
 @Service
 public class OpenAIService {
 
-    private String apiKey = "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";
-    private String assistantId = "asst_FqF4m6Ey4lpsFreuHgSRYLXt";
+    @Value("${spring.ai.openai.api-key}")
+    private String apiKey;
+
+    @Value("${spring.ai.openai.assistant-id}")
+    private String assistantId;
 
     private final RestTemplate restTemplate;
 
