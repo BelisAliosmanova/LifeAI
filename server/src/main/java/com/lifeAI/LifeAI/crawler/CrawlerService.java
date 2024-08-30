@@ -15,12 +15,11 @@ import java.io.File;
 @Service
 public class CrawlerService implements Runnable {
 
-    private static CrawlController controller = null;
     private final static int POLITENESS_DELAY = 200;
     private final static int MAX_CRAWL_DEPTH = 6;
     private final static int MAX_PAGES_COUNT = -1;
     private final static int NUMBER_OF_CRAWLERS = 10;
-
+    private static CrawlController controller = null;
     private final SiteRepository siteRepository;
     private final CrawlerFactory crawlerFactory;
 

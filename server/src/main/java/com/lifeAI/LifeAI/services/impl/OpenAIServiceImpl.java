@@ -1,4 +1,5 @@
 package com.lifeAI.LifeAI.services.impl;
+
 import com.lifeAI.LifeAI.exceptions.ErrorProcessingAIResponseException;
 import com.lifeAI.LifeAI.services.OpenAIService;
 import org.springframework.ai.document.Document;
@@ -6,11 +7,7 @@ import org.springframework.ai.transformer.splitter.TokenTextSplitter;
 import org.springframework.ai.vectorstore.VectorStore;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.MessageSource;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -19,17 +16,14 @@ import java.util.*;
 @Service
 public class OpenAIServiceImpl implements OpenAIService {
 
+    private final RestTemplate restTemplate;
+    private final MessageSource messageSource;
+    private final VectorStore vectorStore;
+    private final TokenTextSplitter tokenTextSplitter;
     @Value("${spring.ai.openai.api-key}")
     private String apiKey;
-
     @Value("${spring.ai.openai.assistant-id}")
     private String assistantId;
-
-    private final RestTemplate restTemplate;
-
-    private final MessageSource messageSource;
-    private  final VectorStore vectorStore;
-    private final TokenTextSplitter tokenTextSplitter;
 
     public OpenAIServiceImpl(RestTemplate restTemplate, MessageSource messageSource, VectorStore vectorStore, TokenTextSplitter tokenTextSplitter) {
         this.restTemplate = restTemplate;

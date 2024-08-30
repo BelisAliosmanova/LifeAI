@@ -10,12 +10,12 @@ import org.springframework.scheduling.annotation.EnableAsync;
 @EnableAsync(proxyTargetClass = true)
 public class LifeAiApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(LifeAiApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(LifeAiApplication.class, args);
+    }
 
-	@Bean
-	public TokenTextSplitter tokenTextSplitter(){
-		return new TokenTextSplitter();
-	}
+    @Bean
+    public TokenTextSplitter tokenTextSplitter() {
+        return new TokenTextSplitter();
+    }
 }

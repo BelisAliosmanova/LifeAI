@@ -15,6 +15,7 @@ public class CrawlerFactory implements CrawlController.WebCrawlerFactory<WebCraw
     private final PageRepository pageRepository;
     private final CrawlerExtractor crawlerExtractor;
     private final PageService pageService;
+
     @Override
     public Crawler newInstance() {
         return new Crawler(
