@@ -1,7 +1,9 @@
 package com.lifeAI.LifeAI.services.impl;
 import com.lifeAI.LifeAI.exceptions.ErrorProcessingAIResponseException;
 import com.lifeAI.LifeAI.services.OpenAIService;
-import org.apache.poi.ss.formula.functions.T;
+import org.springframework.ai.document.Document;
+import org.springframework.ai.transformer.splitter.TokenTextSplitter;
+import org.springframework.ai.vectorstore.VectorStore;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.MessageSource;
 import org.springframework.http.HttpEntity;
@@ -13,8 +15,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.*;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 @Service
 public class OpenAIServiceImpl implements OpenAIService {
@@ -28,20 +28,38 @@ public class OpenAIServiceImpl implements OpenAIService {
     private final RestTemplate restTemplate;
 
     private final MessageSource messageSource;
+    private  final VectorStore vectorStore;
+    private final TokenTextSplitter tokenTextSplitter;
 
-    public OpenAIServiceImpl(RestTemplate restTemplate, MessageSource messageSource) {
+    public OpenAIServiceImpl(RestTemplate restTemplate, MessageSource messageSource, VectorStore vectorStore, TokenTextSplitter tokenTextSplitter) {
         this.restTemplate = restTemplate;
         this.messageSource = messageSource;
+        this.vectorStore = vectorStore;
+        this.tokenTextSplitter = tokenTextSplitter;
     }
 
     @Override
-    public String interactWithAssistant(String userMessage){
-        if (userMessage == null || userMessage.isEmpty()){
-            throw  new ErrorProcessingAIResponseException(messageSource);
+    public String interactWithAssistant(String userMessage) {
+        if (userMessage == null || userMessage.isEmpty()) {
+            throw new ErrorProcessingAIResponseException(messageSource);
         }
 
-        String threadId = createNewThread(userMessage);
-        addMessageToThread(threadId, userMessage);
+        Document userMessageDoc = new Document(userMessage);
+        vectorStore.add(tokenTextSplitter.apply(List.of(userMessageDoc)));
+
+        // Query vector database for relevant pages
+        List<Document> relevantEntries = vectorStore.similaritySearch(String.valueOf(userMessageDoc));
+
+        // Combine relevant content with user message
+        StringBuilder contextBuilder = new StringBuilder();
+        for (Document entry : relevantEntries) {
+            contextBuilder.append(entry.getContent());
+        }
+
+        // Use the combined message to interact with the assistant
+        String combinedMessage = contextBuilder + "User: " + userMessage;
+        String threadId = createNewThread(combinedMessage);
+        addMessageToThread(threadId, combinedMessage);
         String runId = runAssistant(threadId);
         runAssistantResponse(threadId, runId);
         return getFullAssistantResponseText(threadId);
