@@ -1,4 +1,4 @@
-package com.lifeAI.LifeAI.exceptions;
+package com.lifeAI.LifeAI.exceptions.ai;
 
 import com.lifeAI.LifeAI.exceptions.common.BadRequestException;
 import org.springframework.context.MessageSource;

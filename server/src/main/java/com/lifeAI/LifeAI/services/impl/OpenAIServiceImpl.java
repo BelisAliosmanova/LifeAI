@@ -1,6 +1,6 @@
 package com.lifeAI.LifeAI.services.impl;
 
-import com.lifeAI.LifeAI.exceptions.ErrorProcessingAIResponseException;
+import com.lifeAI.LifeAI.exceptions.ai.ErrorProcessingAIResponseException;
 import com.lifeAI.LifeAI.services.OpenAIService;
 import org.springframework.ai.document.Document;
 import org.springframework.ai.transformer.splitter.TokenTextSplitter;

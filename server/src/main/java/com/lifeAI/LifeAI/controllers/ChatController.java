@@ -12,7 +12,7 @@ import java.util.Map;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("/openai")
+@RequestMapping("/api/v1/openai")
 public class ChatController {
 
     private final OpenAIService openAIService;
