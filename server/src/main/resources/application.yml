@@ -16,6 +16,7 @@ spring:
         initialize-schema: true
     openai:
       api-key: ${OPENAI_API_KEY}
+      assistant-id: ${ASSISTANT_ID}
   datasource:
     url: jdbc:postgresql://${DB_HOST}:${DB_PORT}/${DB_NAME}
     driverClassName: org.postgresql.Driver
