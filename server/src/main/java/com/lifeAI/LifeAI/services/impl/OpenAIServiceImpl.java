@@ -19,17 +19,15 @@ public class OpenAIServiceImpl implements OpenAIService {
     private final RestTemplate restTemplate;
     private final MessageSource messageSource;
     private final VectorStore vectorStore;
-    private final TokenTextSplitter tokenTextSplitter;
     @Value("${spring.ai.openai.api-key}")
     private String apiKey;
     @Value("${spring.ai.openai.assistant-id}")
     private String assistantId;
 
-    public OpenAIServiceImpl(RestTemplate restTemplate, MessageSource messageSource, VectorStore vectorStore, TokenTextSplitter tokenTextSplitter) {
+    public OpenAIServiceImpl(RestTemplate restTemplate, MessageSource messageSource, VectorStore vectorStore) {
         this.restTemplate = restTemplate;
         this.messageSource = messageSource;
         this.vectorStore = vectorStore;
-        this.tokenTextSplitter = tokenTextSplitter;
     }
 
     @Override
@@ -39,7 +37,6 @@ public class OpenAIServiceImpl implements OpenAIService {
         }
 
         Document userMessageDoc = new Document(userMessage);
-        vectorStore.add(tokenTextSplitter.apply(List.of(userMessageDoc)));
 
         // Query vector database for relevant pages
         List<Document> relevantEntries = vectorStore.similaritySearch(String.valueOf(userMessageDoc));

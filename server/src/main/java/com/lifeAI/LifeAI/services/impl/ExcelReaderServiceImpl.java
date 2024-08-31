@@ -2,6 +2,7 @@ package com.lifeAI.LifeAI.services.impl;
 
 import com.lifeAI.LifeAI.model.Site;
 import com.lifeAI.LifeAI.respository.SiteRepository;
+import com.lifeAI.LifeAI.services.ExcelReaderService;
 import lombok.RequiredArgsConstructor;
 import org.apache.poi.ss.usermodel.*;
 import org.springframework.stereotype.Service;
@@ -12,10 +13,11 @@ import java.io.IOException;
 
 @Service
 @RequiredArgsConstructor
-public class ExcelReaderService {
+public class ExcelReaderServiceImpl implements ExcelReaderService {
 
     private final SiteRepository siteRepository;
 
+    @Override
     public void readExcelFile() throws IOException {
 //        It crawls an Excel file with NGOs, although we currently only have one site which
 //        is https://life.bbca.bg/. The plan is to use this code for other sites in the future

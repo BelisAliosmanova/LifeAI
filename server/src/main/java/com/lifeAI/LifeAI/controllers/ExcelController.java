@@ -1,6 +1,6 @@
 package com.lifeAI.LifeAI.controllers;
 
-import com.lifeAI.LifeAI.services.impl.ExcelReaderService;
+import com.lifeAI.LifeAI.services.ExcelReaderService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
