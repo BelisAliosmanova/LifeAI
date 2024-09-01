@@ -56,6 +56,21 @@ public class OpenAIServiceImpl implements OpenAIService {
         return getFullAssistantResponseText(threadId);
     }
 
+    @Override
+    public String researchRecommendedStudies(String userMessage) {
+        if (userMessage == null || userMessage.isEmpty()) {
+            throw new ErrorProcessingAIResponseException(messageSource);
+        }
+
+        String threadId = createNewThread("Give sample medical tests that the user can read and do. Find this " +
+                "information on the Internet and provide links where you can read more about the research"
+                + userMessage);
+        addMessageToThread(threadId, userMessage);
+        String runId = runAssistant(threadId);
+        runAssistantResponse(threadId, runId);
+        return getFullAssistantResponseText(threadId);
+    }
+
     private String createNewThread(String message) {
         String url = "https://api.openai.com/v1/threads";
         HttpHeaders headers = createHeaders();

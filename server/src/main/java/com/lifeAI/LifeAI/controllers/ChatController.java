@@ -24,4 +24,13 @@ public class ChatController {
         String response = openAIService.interactWithAssistant(userMessage);
         return ResponseEntity.ok(response);
     }
+
+    // Recommended studies
+    @PostMapping("/research")
+    public ResponseEntity<?> researchRecommendedStudies(@RequestBody Map<String, String> request) {
+        String userMessage = request.get("message");
+
+        String response = openAIService.interactWithAssistant(userMessage);
+        return ResponseEntity.ok(response);
+    }
 }
