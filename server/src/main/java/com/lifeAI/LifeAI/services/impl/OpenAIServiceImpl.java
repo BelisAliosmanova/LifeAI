@@ -36,21 +36,21 @@ public class OpenAIServiceImpl implements OpenAIService {
             throw new ErrorProcessingAIResponseException(messageSource);
         }
 
-        Document userMessageDoc = new Document(userMessage);
+//        Document userMessageDoc = new Document(userMessage);
 
         // Query vector database for relevant pages
-        List<Document> relevantEntries = vectorStore.similaritySearch(String.valueOf(userMessageDoc));
+//        List<Document> relevantEntries = vectorStore.similaritySearch(String.valueOf(userMessageDoc));
 
         // Combine relevant content with user message
-        StringBuilder contextBuilder = new StringBuilder();
-        for (Document entry : relevantEntries) {
-            contextBuilder.append(entry.getContent());
-        }
+//        StringBuilder contextBuilder = new StringBuilder();
+//        for (Document entry : relevantEntries) {
+//            contextBuilder.append(entry.getContent());
+//        }
 
         // Use the combined message to interact with the assistant
-        String combinedMessage = contextBuilder + "User: " + userMessage;
-        String threadId = createNewThread(combinedMessage);
-        addMessageToThread(threadId, combinedMessage);
+//        String combinedMessage = contextBuilder + "User: " + userMessage;
+        String threadId = createNewThread(userMessage);
+        addMessageToThread(threadId, userMessage);
         String runId = runAssistant(threadId);
         runAssistantResponse(threadId, runId);
         return getFullAssistantResponseText(threadId);
