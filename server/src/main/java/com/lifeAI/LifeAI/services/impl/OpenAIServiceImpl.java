@@ -2,12 +2,9 @@ package com.lifeAI.LifeAI.services.impl;
 
 import com.lifeAI.LifeAI.exceptions.ai.ErrorProcessingAIResponseException;
 import com.lifeAI.LifeAI.services.OpenAIService;
-import org.springframework.ai.document.Document;
-import org.springframework.ai.transformer.splitter.TokenTextSplitter;
 import org.springframework.ai.vectorstore.VectorStore;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.MessageSource;
-import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
@@ -43,22 +40,17 @@ public class OpenAIServiceImpl implements OpenAIService {
             throw new ErrorProcessingAIResponseException(messageSource);
         }
 
-        // Prepare the threadId and fileId
         String threadId = "";
         String fileId = null;
 
-        // If a file is present, upload it
         if (file != null && !file.isEmpty()) {
             fileId = uploadFileToOpenAI(file);
-            // Create a new thread with the file information
             threadId = createNewThread("Processing file with ID: " + fileId);
 
-            // Prepare the message content as an array
             List<Map<String, Object>> contentList = new ArrayList<>();
-            contentList.add(createFileMessage(fileId)); // Add image file message
-            contentList.add(createTextMessage(userMessage)); // Add user text message
+            contentList.add(createFileMessage(fileId));
+            contentList.add(createTextMessage(userMessage));
 
-            // Add the content to the thread
             addMessageContentToThread(threadId, contentList);
         } else {
             // If no file, just create a thread with the user message
@@ -66,15 +58,12 @@ public class OpenAIServiceImpl implements OpenAIService {
             addMessageToThread(threadId, userMessage);
         }
 
-        // Run the assistant with the created thread
         String runId = runAssistant(threadId);
         runAssistantResponse(threadId, runId);
 
-        // Retrieve and return the full assistant response
         return getFullAssistantResponseText(threadId);
     }
 
-    // Create a method for the image file message
     private Map<String, Object> createFileMessage(String fileId) {
         Map<String, Object> fileMessage = new HashMap<>();
         fileMessage.put("type", "image_file");
@@ -86,7 +75,6 @@ public class OpenAIServiceImpl implements OpenAIService {
         return fileMessage;
     }
 
-    // Create a method for the text message
     private Map<String, Object> createTextMessage(String text) {
         Map<String, Object> textMessage = new HashMap<>();
         textMessage.put("type", "text");
@@ -94,19 +82,17 @@ public class OpenAIServiceImpl implements OpenAIService {
         return textMessage;
     }
 
-    // Update the method to add content to the thread
     private void addMessageContentToThread(String threadId, List<Map<String, Object>> contentList) {
         String url = String.format("https://api.openai.com/v1/threads/%s/messages", threadId);
         HttpHeaders headers = createHeaders();
 
         Map<String, Object> messageContent = new HashMap<>();
         messageContent.put("role", "user");
-        messageContent.put("content", contentList); // Set the content to the prepared list
+        messageContent.put("content", contentList);
 
         HttpEntity<Map<String, Object>> entity = new HttpEntity<>(messageContent, headers);
         restTemplate.exchange(url, HttpMethod.POST, entity, String.class);
     }
-
 
 
     private String uploadFileToOpenAI(MultipartFile file) throws IOException {
@@ -116,7 +102,7 @@ public class OpenAIServiceImpl implements OpenAIService {
 
         MultiValueMap<String, Object> body = new LinkedMultiValueMap<>();
         body.add("file", new MultipartInputStreamFileResource(file.getInputStream(), file.getOriginalFilename()));
-        body.add("purpose", "assistants");  // Set purpose to "assistants" for assistant-related file upload
+        body.add("purpose", "assistants");
 
         HttpEntity<MultiValueMap<String, Object>> entity = new HttpEntity<>(body, headers);
 
@@ -132,26 +118,6 @@ public class OpenAIServiceImpl implements OpenAIService {
             return responseBody.get("id").toString();
         } else {
             throw new RuntimeException("Failed to upload file, no ID returned.");
-        }
-    }
-
-    // Helper class to wrap InputStream as a Resource for RestTemplate
-    private static class MultipartInputStreamFileResource extends InputStreamResource {
-        private final String filename;
-
-        MultipartInputStreamFileResource(InputStream inputStream, String filename) {
-            super(inputStream);
-            this.filename = filename;
-        }
-
-        @Override
-        public String getFilename() {
-            return this.filename;
-        }
-
-        @Override
-        public long contentLength() throws IOException {
-            return -1;  // Unable to determine, let the framework decide
         }
     }
 
@@ -322,6 +288,26 @@ public class OpenAIServiceImpl implements OpenAIService {
         headers.set("OpenAI-Beta", "assistants=v2");
         headers.setContentType(MediaType.APPLICATION_JSON);
         return headers;
+    }
+
+    // Helper class to wrap InputStream as a Resource for RestTemplate
+    private static class MultipartInputStreamFileResource extends InputStreamResource {
+        private final String filename;
+
+        MultipartInputStreamFileResource(InputStream inputStream, String filename) {
+            super(inputStream);
+            this.filename = filename;
+        }
+
+        @Override
+        public String getFilename() {
+            return this.filename;
+        }
+
+        @Override
+        public long contentLength() throws IOException {
+            return -1;  // Unable to determine, let the framework decide
+        }
     }
 }
 
