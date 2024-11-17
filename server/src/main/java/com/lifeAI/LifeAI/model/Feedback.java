@@ -22,7 +22,7 @@ public class Feedback {
     private Long id;
     @Nullable
     private String comment;
-    private boolean isTubsUp;
+    private boolean thumbsUp;
     private String url;
     private LocalDateTime createdAt;
 }

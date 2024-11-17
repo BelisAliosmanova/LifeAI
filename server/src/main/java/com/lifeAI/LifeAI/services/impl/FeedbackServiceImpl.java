@@ -40,7 +40,7 @@ public class FeedbackServiceImpl implements FeedbackService {
         feedbackDTO.setId(null);
         feedbackDTO.setCreatedAt(LocalDateTime.now());
         feedbackDTO.setComment(feedbackDTO.getComment());
-        feedbackDTO.setTubsUp(feedbackDTO.isTubsUp());
+        feedbackDTO.setThumbsUp(feedbackDTO.isThumbsUp());
         feedbackDTO.setUrl(feedbackDTO.getUrl());
 
         Feedback feedbackEntity = feedbackRepository.save(modelMapper.map(feedbackDTO, Feedback.class));
