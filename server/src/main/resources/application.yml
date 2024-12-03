@@ -22,6 +22,9 @@ spring:
     driverClassName: org.postgresql.Driver
     username: ${DB_USER}
     password: ${DB_PASSWORD}
+  flyway:
+    enabled: true
+    validate-on-migrate: false
   jpa:
     generate-ddl: false
     hibernate:
