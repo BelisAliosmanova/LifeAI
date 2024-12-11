@@ -22,16 +22,14 @@ public class OpenAIServiceImpl implements OpenAIService {
 
     private final RestTemplate restTemplate;
     private final MessageSource messageSource;
-    private final VectorStore vectorStore;
     @Value("${spring.ai.openai.api-key}")
     private String apiKey;
     @Value("${spring.ai.openai.assistant-id}")
     private String assistantId;
 
-    public OpenAIServiceImpl(RestTemplate restTemplate, MessageSource messageSource, VectorStore vectorStore) {
+    public OpenAIServiceImpl(RestTemplate restTemplate, MessageSource messageSource) {
         this.restTemplate = restTemplate;
         this.messageSource = messageSource;
-        this.vectorStore = vectorStore;
     }
 
     @Override

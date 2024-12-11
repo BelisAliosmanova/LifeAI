@@ -11,19 +11,12 @@ import lombok.ToString;
 @Setter
 @ToString
 @RequiredArgsConstructor
-@Table(name = "pages")
-public class Page {
+@Table(name = "answers")
+public class Answer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
-    @ManyToOne
-    @JoinColumn(name = "site_id")
-    private Site site;
-    private String title;
-    @Column(columnDefinition = "CHAR(255)")
-    private String metaData;
-    @Column(columnDefinition = "CHAR(255)")
-    private String data;
-    private String url;
+    @Column(columnDefinition = "TEXT")
+    private String text;
 }

@@ -11,19 +11,14 @@ import lombok.ToString;
 @Setter
 @ToString
 @RequiredArgsConstructor
-@Table(name = "pages")
-public class Page {
+@Table(name = "questions")
+public class Question {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
-    @ManyToOne
-    @JoinColumn(name = "site_id")
-    private Site site;
-    private String title;
-    @Column(columnDefinition = "CHAR(255)")
-    private String metaData;
-    @Column(columnDefinition = "CHAR(255)")
-    private String data;
-    private String url;
+    private String text;
+    private Long dependsOn; // ID of the triggering question
+    private String dependsOnAnswer; // Answer ("YES" or "NO") that triggers this question
+    private String result;
 }

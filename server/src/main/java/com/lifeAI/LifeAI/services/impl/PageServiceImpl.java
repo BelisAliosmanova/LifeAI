@@ -14,7 +14,7 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class PageServiceImpl implements PageService {
-    private final VectorStore vectorStore;
+//    private final VectorStore vectorStore;
     private final TokenTextSplitter tokenTextSplitter;
 
     @Override
@@ -30,6 +30,6 @@ public class PageServiceImpl implements PageService {
                 metadata
         );
 
-        vectorStore.add(tokenTextSplitter.apply(List.of(document)));
+//        vectorStore.add(tokenTextSplitter.apply(List.of(document)));
     }
 }
