@@ -21,9 +21,9 @@ public class Page {
     @JoinColumn(name = "site_id")
     private Site site;
     private String title;
-    @Column(columnDefinition = "bpchar")
+    @Column(columnDefinition = "CHAR(255)")
     private String metaData;
-    @Column(columnDefinition = "bpchar")
+    @Column(columnDefinition = "CHAR(255)")
     private String data;
     private String url;
 }
