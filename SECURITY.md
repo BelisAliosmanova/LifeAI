@@ -2,7 +2,7 @@
 
 ## Supported Versions
 
-Versions of Local Web currently being supported with security updates.
+Versions of Life AI currently being supported with security updates.
 
 | Version        | Supported          |
 | -------------- | ------------------ |
