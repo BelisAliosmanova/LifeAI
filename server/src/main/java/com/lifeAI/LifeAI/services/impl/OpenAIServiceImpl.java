@@ -201,8 +201,10 @@ public class OpenAIServiceImpl implements OpenAIService {
         HttpEntity<String> entity = new HttpEntity<>("", headers);
 
         boolean isInProgress = true;
+        int maxRetries = 10; // Maximum number of retries for queued status
+        int retryCount = 0;
 
-        while (isInProgress) {
+        while (isInProgress && retryCount < maxRetries) {
             try {
                 ResponseEntity<Map> response = restTemplate.exchange(
                         runUrl,
@@ -216,18 +218,21 @@ public class OpenAIServiceImpl implements OpenAIService {
                 if (responseBody != null && responseBody.containsKey("status")) {
                     String status = (String) responseBody.get("status");
 
-                    // Check if status is still in progress
                     if ("in_progress".equals(status)) {
                         System.out.println("Status: in progress. Waiting...");
                         Thread.sleep(5000); // Wait for 5 seconds before checking again
+                    } else if ("queued".equals(status)) {
+                        retryCount++;
+                        System.out.println("Status: queued. Retry attempt: " + retryCount);
+                        Thread.sleep(5000); // Wait before retrying
                     } else {
                         isInProgress = false;
-                        System.out.println("Status: " + status);
+                        System.out.println("Final Status: " + status);
                     }
                 } else {
+                    System.err.println("Unexpected response: " + responseBody);
                     throw new ErrorProcessingAIResponseException(messageSource);
                 }
-
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
                 System.err.println("Thread interrupted: " + e.getMessage());
@@ -236,6 +241,10 @@ public class OpenAIServiceImpl implements OpenAIService {
                 System.err.println("Error while checking run status: " + e.getMessage());
                 break;
             }
+        }
+
+        if (retryCount >= maxRetries) {
+            System.err.println("Status stuck on queued. Exceeded retry limit.");
         }
     }
 
