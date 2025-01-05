@@ -15,7 +15,7 @@ spring:
       api-key: ${OPENAI_API_KEY}
       assistant-id: ${ASSISTANT_ID}
   datasource:
-    url: ${MYSQL_URL}
+    url: jdbc:${MYSQL_URL}
     username: ${MYSQLUSER}
     password: ${MYSQLPASSWORD}
     driver-class-name: com.mysql.cj.jdbc.Driver
