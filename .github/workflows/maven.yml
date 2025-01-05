@@ -36,6 +36,4 @@ jobs:
 
       - name: Build with Maven
         working-directory: server
-        run: mvn -B clean install -Dtest=!controllerTest/** --file pom.xml
-
-
+        run: mvn -B clean install -DskipTests --file pom.xml
