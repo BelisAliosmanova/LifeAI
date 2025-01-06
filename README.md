@@ -1,42 +1,91 @@
-
 <img src="https://life.bbca.bg/img/rose-lady.svg" alt="Bulgarian Breast Cancer Association" width="100" align="left" style="margin-right: 10px;" />
-<h1>Pilot Product for Life BBCA:</h15
-<h2>Application for Understanding Diagnosis with AI</h2>
+<br>
+
+# LifeAI: AI-Powered Support for Breast Cancer Patients  
+<br>
 
 
-<h3>Description:</h3>
-<ul>
-    <li><a href="https://life.bbca.bg/">Life BBCA</a></li>
-    <li>The application allows patients to upload their diagnosis (histology) and learn more about what it says.</li>
-    <li>The AI attempts to find keywords in the document and provide more information to the patients.</li>
-    <li>We aim to quickly gather a budget for advertising, which will help us reach more people, increase the application usage, and collect data that will improve the product.</li>
-</ul>
+## 🌟 About LifeAI  
 
-<h3>Steps and Resources:</h3>
+LifeAI is an AI-driven platform developed in collaboration with the **Bulgarian Breast Cancer Association (BBCA)** to provide essential support for breast cancer patients.  
 
-<table>
-    <thead>
-        <tr>
-            <th>Steps</th>
-            <th>Resources</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>1. Download the application</td>
-            <td><a href="https://life.bbca.bg/">Life BBCA</a></td>
-        </tr>
-        <tr>
-            <td>2. Click on the link <strong>Understanding the Diagnosis</strong></td>
-            <td><a href="https://www.figma.com/design/ZGYZgMIqRgjb5YMuxwp9nw/LIFE---BBCA?node-id=0-1&t=BMqfEkXyc2ClcROg-0">Example Prototypes on Figma</a></td>
-        </tr>
-        <tr>
-            <td>3. Upload a picture/scan of the diagnosis (histology)</td>
-            <td><a href="https://drive.google.com/drive/folders/1xYL-EVl-tVksgUKF6Opu-JNqF5t1KOpM">Example Diagnoses</a></td>
-        </tr>
-        <tr>
-            <td>4. Extract key terms from the document that the patient can read</td>
-            <td><a href="https://docs.google.com/document/d/1jP--jM8uGIWCviXWcEa3iPnq6p-66tDz/edit">List of Key Terms</a></td>
-        </tr>
-    </tbody>
-</table>
+The journey starts when patients receive a diagnosis—a moment filled with uncertainty and stress. LifeAI bridges the gap by offering a reliable, accessible source of information tailored to their needs.  
+
+With **LifeAI**, patients can:  
+ - Understand their diagnosis with AI-assisted insights.
+ - Gain clarity on medical terminology, explained in easy-to-understand language.
+ - Access personalized study recommendations tailored to their individual needs and conditions.
+ - Ask questions and receive accurate, doctor-approved answers anytime.
+ - Discover healthy recipes, curated articles, and daily exercises to support their overall well-being.
+ - Stay empowered with 24/7 access to trusted, relevant information.
+
+---
+
+## 🛠️ Key Features  
+
+1. **Diagnosis Understanding**:  
+   - Upload histology pictures/scans to extract and explain key terms.  
+   - Get explanations for medical terminology, approved by leading doctors in the field.  
+
+2. **AI-Powered Q&A**:  
+   - Chat with an AI trained specifically for breast cancer support.  
+   - Receive answers to questions anytime, anywhere.  
+
+3. **Personalized Study Recommendations**:  
+   - Answer simple yes/no questions to generate customized study plans.  
+
+4. **Helpful Resources**:  
+   - Comprehensive library of articles.  
+   - Healthy recipes and daily exercise suggestions.  
+
+5. **User Feedback**:  
+   - Users can send feedback directly through the platform, allowing us to improve the experience and add features based on their needs.  
+
+---
+
+## 🧑‍⚕️ Why LifeAI?  
+
+When faced with a breast cancer diagnosis, patients often experience:  
+- **Panic**: A lack of immediate and understandable information.  
+- **Overwhelming Search Results**: Stressful and unreliable online content.  
+- **Limited Access to Doctors**: Difficulty in frequent consultations for every concern.  
+
+LifeAI alleviates these issues by providing:  
+- **Trusted Information**: AI trained and approved by medical experts.  
+- **Instant Answers**: A digital assistant available 24/7.  
+- **Personalized Support**: Tools designed to cater to individual patient needs.
+- **User Feedback**: They can always share their thoughts or ask questions directly with our team of doctors.
+---
+
+## 🚀 Vision and Goals  
+
+LifeAI is more than a tool; it’s a companion for patients navigating their journey. Our primary objectives:  
+- Reach more patients through effective awareness campaigns.  
+- Continuously improve AI capabilities with user feedback and data.  
+- Expand functionality to cover broader aspects of patient care.  
+
+---
+## 📈 Continuous Improvement  
+
+Every interaction with our platform helps us improve. We analyze user statistics such as clicks, time spent on features, and feedback to refine the user experience. By learning from how users interact with the platform, we aim to:  
+
+- Enhance AI responses to make them more personalized and effective.  
+- Prioritize the development of the most-used features.  
+- Optimize the interface to make navigation smoother and more intuitive.
+<p> LifeAI is a living, evolving platform that grows smarter with each user. Your interaction not only helps you but also contributes to making the platform better for everyone.  </p>
+
+---
+## 🤝 How to Contribute  
+
+We welcome feedback and collaboration!  
+- Share your thoughts by opening an issue on this repository.  
+- Help us grow by spreading the word about LifeAI.  
+- Developers, designers, and medical professionals—join our mission!  
+
+---
+
+## 💡 Acknowledgments  
+
+This project is made possible by the dedication of healthcare professionals, developers, and the unwavering support of the **Bulgarian Breast Cancer Association (BBCA)**.  
+
+Together, let’s create a future where patients feel empowered and informed.
