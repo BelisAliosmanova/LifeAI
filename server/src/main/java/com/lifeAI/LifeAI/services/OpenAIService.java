@@ -8,5 +8,5 @@ import java.io.IOException;
 public interface OpenAIService {
     String interactWithAssistant(String userMessage, MultipartFile file) throws IOException;
 
-    String researchRecommendedStudies(String userMessage);
+    String researchSideEffects(String userMessage);
 }

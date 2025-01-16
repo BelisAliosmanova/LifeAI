@@ -120,13 +120,12 @@ public class OpenAIServiceImpl implements OpenAIService {
     }
 
     @Override
-    public String researchRecommendedStudies(String userMessage) {
+    public String researchSideEffects(String userMessage) {
         if (userMessage == null || userMessage.isEmpty()) {
             throw new ErrorProcessingAIResponseException(messageSource);
         }
 
-        String threadId = createNewThread("Give sample medical tests that the user can read and do. Find this " +
-                "information on the Internet and provide links where you can read more about the research"
+        String threadId = createNewThread("The patient has these side effects from the breast cancer, help finding solutions: "
                 + userMessage);
         addMessageToThread(threadId, userMessage);
         String runId = runAssistant(threadId);

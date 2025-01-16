@@ -29,12 +29,10 @@ public class ChatController {
         }
     }
 
-    // Recommended studies
-    @PostMapping("/research")
-    public ResponseEntity<?> researchRecommendedStudies(@RequestBody Map<String, String> request) throws IOException {
-        String userMessage = request.get("message");
+    @PostMapping("/researchSideEffects")
+    public ResponseEntity<?> researchSideEffects(@RequestParam("message") String userMessage) {
 
-        String response = openAIService.interactWithAssistant(userMessage, null);
+        String response = openAIService.researchSideEffects(userMessage);
         return ResponseEntity.ok(response);
     }
 }
