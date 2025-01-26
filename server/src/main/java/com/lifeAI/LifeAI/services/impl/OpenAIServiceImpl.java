@@ -1,8 +1,9 @@
 package com.lifeAI.LifeAI.services.impl;
 
 import com.lifeAI.LifeAI.exceptions.ai.ErrorProcessingAIResponseException;
+import com.lifeAI.LifeAI.model.Reminder;
+import com.lifeAI.LifeAI.respository.ReminderRepository;
 import com.lifeAI.LifeAI.services.OpenAIService;
-import org.springframework.ai.vectorstore.VectorStore;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.MessageSource;
 import org.springframework.core.io.InputStreamResource;
@@ -22,14 +23,19 @@ public class OpenAIServiceImpl implements OpenAIService {
 
     private final RestTemplate restTemplate;
     private final MessageSource messageSource;
+    private final ReminderRepository reminderRepository;
+
     @Value("${spring.ai.openai.api-key}")
     private String apiKey;
     @Value("${spring.ai.openai.assistant-id}")
     private String assistantId;
+    @Value("${spring.ai.openai.positiveAssistant-id}")
+    private String positiveAssistantId;
 
-    public OpenAIServiceImpl(RestTemplate restTemplate, MessageSource messageSource) {
+    public OpenAIServiceImpl(RestTemplate restTemplate, MessageSource messageSource, ReminderRepository reminderRepository) {
         this.restTemplate = restTemplate;
         this.messageSource = messageSource;
+        this.reminderRepository = reminderRepository;
     }
 
     @Override
@@ -60,6 +66,37 @@ public class OpenAIServiceImpl implements OpenAIService {
         runAssistantResponse(threadId, runId);
 
         return getFullAssistantResponseText(threadId);
+    }
+
+    @Override
+    public String researchSideEffects(String userMessage) {
+        if (userMessage == null || userMessage.isEmpty()) {
+            throw new ErrorProcessingAIResponseException(messageSource);
+        }
+
+        String threadId = createNewThread("The patient has these side effects from the breast cancer, help finding solutions: "
+                + userMessage);
+        addMessageToThread(threadId, userMessage);
+        String runId = runAssistant(threadId);
+        runAssistantResponse(threadId, runId);
+        return getFullAssistantResponseText(threadId);
+    }
+
+    @Override
+    public String receiveDailyReminder() {
+        String threadId = createNewThread("Please give a positive reminder: ");
+        String runId = runPositiveAssistant(threadId);
+        runAssistantResponse(threadId, runId);
+
+        String response = getFullAssistantResponseText(threadId);
+        reminderRepository.save(new Reminder(response));
+
+        return response;
+    }
+
+    @Override
+    public String getDailyReminder() {
+        return reminderRepository.findFirstByOrderByIdDesc().getText();
     }
 
     private Map<String, Object> createFileMessage(String fileId) {
@@ -119,20 +156,6 @@ public class OpenAIServiceImpl implements OpenAIService {
         }
     }
 
-    @Override
-    public String researchSideEffects(String userMessage) {
-        if (userMessage == null || userMessage.isEmpty()) {
-            throw new ErrorProcessingAIResponseException(messageSource);
-        }
-
-        String threadId = createNewThread("The patient has these side effects from the breast cancer, help finding solutions: "
-                + userMessage);
-        addMessageToThread(threadId, userMessage);
-        String runId = runAssistant(threadId);
-        runAssistantResponse(threadId, runId);
-        return getFullAssistantResponseText(threadId);
-    }
-
     private String createNewThread(String message) {
         String url = "https://api.openai.com/v1/threads";
         HttpHeaders headers = createHeaders();
@@ -181,6 +204,24 @@ public class OpenAIServiceImpl implements OpenAIService {
         HttpHeaders headers = createHeaders();
 
         Map<String, String> body = Collections.singletonMap("assistant_id", assistantId);
+        HttpEntity<Map<String, String>> entity = new HttpEntity<>(body, headers);
+
+        ResponseEntity<Map> response = restTemplate.exchange(
+                url,
+                HttpMethod.POST,
+                entity,
+                Map.class
+        );
+
+        Map<String, Object> responseBody = response.getBody();
+        return responseBody.get("id").toString();
+    }
+
+    private String runPositiveAssistant(String threadId) {
+        String url = String.format("https://api.openai.com/v1/threads/%s/runs", threadId);
+        HttpHeaders headers = createHeaders();
+
+        Map<String, String> body = Collections.singletonMap("assistant_id", positiveAssistantId);
         HttpEntity<Map<String, String>> entity = new HttpEntity<>(body, headers);
 
         ResponseEntity<Map> response = restTemplate.exchange(
