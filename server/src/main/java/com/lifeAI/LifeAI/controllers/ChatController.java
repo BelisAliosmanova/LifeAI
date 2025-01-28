@@ -34,7 +34,7 @@ public class ChatController {
     }
 
     @GetMapping("/dailyReminder")
-    public ResponseEntity<?> receiveDailyReminder() {
-        return ResponseEntity.ok(openAIService.getDailyReminder());
+    public String receiveDailyReminder() {
+        return openAIService.getDailyReminder();
     }
 }
