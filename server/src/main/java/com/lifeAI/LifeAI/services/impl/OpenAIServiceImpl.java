@@ -118,7 +118,7 @@ public class OpenAIServiceImpl implements OpenAIService {
     }
 
     private void addMessageContentToThread(String threadId, List<Map<String, Object>> contentList) {
-        String url = String.format("https://api.openai.com/v1/threads/%s/messages", threadId);
+        String url = String.format("https://turbo.gptboost.io/v1/threads/%s/messages", threadId);
         HttpHeaders headers = createHeaders();
 
         Map<String, Object> messageContent = new HashMap<>();
@@ -131,7 +131,7 @@ public class OpenAIServiceImpl implements OpenAIService {
 
 
     private String uploadFileToOpenAI(MultipartFile file) throws IOException {
-        String url = "https://api.openai.com/v1/files";
+        String url = "https://turbo.gptboost.io/v1/files";
         HttpHeaders headers = createHeaders();
         headers.setContentType(MediaType.MULTIPART_FORM_DATA);
 
@@ -157,7 +157,7 @@ public class OpenAIServiceImpl implements OpenAIService {
     }
 
     private String createNewThread(String message) {
-        String url = "https://api.openai.com/v1/threads";
+        String url = "https://turbo.gptboost.io/v1/threads";
         HttpHeaders headers = createHeaders();
         headers.set("OpenAI-Beta", "assistants=v2");
 
@@ -187,7 +187,7 @@ public class OpenAIServiceImpl implements OpenAIService {
     }
 
     private void addMessageToThread(String threadId, String messageContent) {
-        String url = String.format("https://api.openai.com/v1/threads/%s/messages", threadId);
+        String url = String.format("https://turbo.gptboost.io/v1/threads/%s/messages", threadId);
         HttpHeaders headers = createHeaders();
 
         Map<String, String> message = new HashMap<>();
@@ -200,7 +200,7 @@ public class OpenAIServiceImpl implements OpenAIService {
     }
 
     private String runAssistant(String threadId) {
-        String url = String.format("https://api.openai.com/v1/threads/%s/runs", threadId);
+        String url = String.format("https://turbo.gptboost.io/v1/threads/%s/runs", threadId);
         HttpHeaders headers = createHeaders();
 
         Map<String, String> body = Collections.singletonMap("assistant_id", assistantId);
@@ -218,7 +218,7 @@ public class OpenAIServiceImpl implements OpenAIService {
     }
 
     private String runPositiveAssistant(String threadId) {
-        String url = String.format("https://api.openai.com/v1/threads/%s/runs", threadId);
+        String url = String.format("https://turbo.gptboost.io/v1/threads/%s/runs", threadId);
         HttpHeaders headers = createHeaders();
 
         Map<String, String> body = Collections.singletonMap("assistant_id", positiveAssistantId);
@@ -236,7 +236,7 @@ public class OpenAIServiceImpl implements OpenAIService {
     }
 
     public void runAssistantResponse(String threadId, String runId) {
-        String runUrl = String.format("https://api.openai.com/v1/threads/%s/runs/%s", threadId, runId);
+        String runUrl = String.format("https://turbo.gptboost.io/v1/threads/%s/runs/%s", threadId, runId);
         HttpHeaders headers = createHeaders();
         HttpEntity<String> entity = new HttpEntity<>("", headers);
 
@@ -289,7 +289,7 @@ public class OpenAIServiceImpl implements OpenAIService {
     }
 
     private String getFullAssistantResponseText(String threadId) {
-        String url = String.format("https://api.openai.com/v1/threads/%s/messages", threadId);
+        String url = String.format("https://turbo.gptboost.io/v1/threads/%s/messages", threadId);
 
         HttpHeaders headers = createHeaders();
         HttpEntity<String> entity = new HttpEntity<>(headers);
