@@ -84,7 +84,7 @@ public class OpenAIServiceImpl implements OpenAIService {
 
     @Override
     public String receiveDailyReminder() {
-        String threadId = createNewThread("Please give a positive reminder: ");
+        String threadId = createNewThread("Give positive 90 character message: ");
         String runId = runPositiveAssistant(threadId);
         runAssistantResponse(threadId, runId);
 
