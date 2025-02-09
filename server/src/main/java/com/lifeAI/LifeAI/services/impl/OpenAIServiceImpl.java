@@ -66,7 +66,10 @@ public class OpenAIServiceImpl implements OpenAIService {
         runAssistantResponse(threadId, runId);
 
         String response = getFullAssistantResponseText(threadId);
-        return response.replaceAll("【.*?】", "");
+        response = response.replaceAll("【.*?】", "");
+        response = response.substring(0, response.length() - 1);
+
+        return response;
     }
 
     @Override
@@ -82,7 +85,10 @@ public class OpenAIServiceImpl implements OpenAIService {
         runAssistantResponse(threadId, runId);
 
         String response = getFullAssistantResponseText(threadId);
-        return response.replaceAll("【.*?】", "");
+        response = response.replaceAll("【.*?】", "");
+        response = response.substring(0, response.length() - 1);
+
+        return response;
     }
 
     @Override
@@ -92,6 +98,9 @@ public class OpenAIServiceImpl implements OpenAIService {
         runAssistantResponse(threadId, runId);
 
         String response = getFullAssistantResponseText(threadId);
+        response = response.replaceAll("【.*?】", "");
+        response = response.substring(0, response.length() - 1);
+
         reminderRepository.save(new Reminder(response));
 
         return response;
