@@ -65,7 +65,8 @@ public class OpenAIServiceImpl implements OpenAIService {
         String runId = runAssistant(threadId);
         runAssistantResponse(threadId, runId);
 
-        return getFullAssistantResponseText(threadId);
+        String response = getFullAssistantResponseText(threadId);
+        return response.replaceAll("【.*?】", "");
     }
 
     @Override
@@ -79,7 +80,9 @@ public class OpenAIServiceImpl implements OpenAIService {
         addMessageToThread(threadId, userMessage);
         String runId = runAssistant(threadId);
         runAssistantResponse(threadId, runId);
-        return getFullAssistantResponseText(threadId);
+
+        String response = getFullAssistantResponseText(threadId);
+        return response.replaceAll("【.*?】", "");
     }
 
     @Override
