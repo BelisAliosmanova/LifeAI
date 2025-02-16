@@ -248,7 +248,7 @@ public class OpenAIServiceImpl implements OpenAIService {
     }
 
     public void runAssistantResponse(String threadId, String runId) {
-        String runUrl = String.format("https://turbo.gptboost.io/v1/threads/%s/runs/%s", threadId, runId);
+        String runUrl = String.format("https://api.openai.com/v1/threads/%s/runs/%s", threadId, runId);
         HttpHeaders headers = createHeaders();
         HttpEntity<String> entity = new HttpEntity<>("", headers);
 
