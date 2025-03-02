@@ -4,6 +4,7 @@
 # LifeAI: AI-Powered Support for Breast Cancer Patients  
 <br>
 
+### [Demo](https://lifeai.up.railway.app/info)&nbsp;&nbsp;&nbsp;&nbsp;[Presentation](https://www.canva.com/design/DAGfdV51uIc/1TrZgGRO1gdiulivfzucrQ/edit?utm_content=DAGfdV51uIc&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
 
 ## 🌟 About LifeAI  
 
