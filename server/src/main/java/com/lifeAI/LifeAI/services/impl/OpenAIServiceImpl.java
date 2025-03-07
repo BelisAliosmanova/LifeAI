@@ -29,6 +29,8 @@ public class OpenAIServiceImpl implements OpenAIService {
     private String apiKey;
     @Value("${spring.ai.openai.assistant-id}")
     private String assistantId;
+    @Value("${spring.ai.openai.fileAssistant-id}")
+    private String fileAssistantId;
     @Value("${spring.ai.openai.positiveAssistant-id}")
     private String positiveAssistantId;
 
@@ -62,7 +64,13 @@ public class OpenAIServiceImpl implements OpenAIService {
             addMessageToThread(threadId, userMessage);
         }
 
-        String runId = runAssistant(threadId);
+        String runId = "";
+        if (file != null && !file.isEmpty()) {
+            runId = runFileAssistant(threadId);
+        } else {
+            runId = runAssistant(threadId);
+        }
+
         runAssistantResponse(threadId, runId);
 
         String response = getFullAssistantResponseText(threadId);
@@ -209,6 +217,24 @@ public class OpenAIServiceImpl implements OpenAIService {
         HttpEntity<Map<String, String>> entity = new HttpEntity<>(message, headers);
 
         restTemplate.exchange(url, HttpMethod.POST, entity, String.class);
+    }
+
+    private String runFileAssistant(String threadId) {
+        String url = String.format("https://api.openai.com/v1/threads/%s/runs", threadId);
+        HttpHeaders headers = createHeaders();
+
+        Map<String, String> body = Collections.singletonMap("assistant_id", assistantId);
+        HttpEntity<Map<String, String>> entity = new HttpEntity<>(body, headers);
+
+        ResponseEntity<Map> response = restTemplate.exchange(
+                url,
+                HttpMethod.POST,
+                entity,
+                Map.class
+        );
+
+        Map<String, Object> responseBody = response.getBody();
+        return responseBody.get("id").toString();
     }
 
     private String runAssistant(String threadId) {

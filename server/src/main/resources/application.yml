@@ -15,6 +15,7 @@ spring:
       api-key: ${OPENAI_API_KEY}
       assistant-id: ${ASSISTANT_ID}
       positiveAssistant-id: ${POSITIVE_ASSISTANT_ID}
+      fileAssistant-id:  ${FILE_ASSISTANT_ID}
   datasource:
     url: jdbc:${MYSQL_URL}
     username: ${MYSQLUSER}
