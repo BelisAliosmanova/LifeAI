@@ -223,7 +223,7 @@ public class OpenAIServiceImpl implements OpenAIService {
         String url = String.format("https://api.openai.com/v1/threads/%s/runs", threadId);
         HttpHeaders headers = createHeaders();
 
-        Map<String, String> body = Collections.singletonMap("assistant_id", assistantId);
+        Map<String, String> body = Collections.singletonMap("assistant_id", fileAssistantId);
         HttpEntity<Map<String, String>> entity = new HttpEntity<>(body, headers);
 
         ResponseEntity<Map> response = restTemplate.exchange(
