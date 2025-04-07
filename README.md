@@ -1,4 +1,4 @@
-<img src="https://life.bbca.bg/img/rose-lady.svg" alt="Bulgarian Breast Cancer Association" width="100" align="left" style="margin-right: 10px;" />
+<img src="https://life.bbca.bg/wp-content/uploads/2024/12/rose-lady.png" alt="Bulgarian Breast Cancer Association" width="100" align="left" style="margin-right: 10px;" />
 <br>
 
 # LifeAI: AI-Powered Support for Breast Cancer Patients  
