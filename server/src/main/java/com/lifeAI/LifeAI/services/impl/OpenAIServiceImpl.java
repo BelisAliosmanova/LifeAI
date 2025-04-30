@@ -274,15 +274,15 @@ public class OpenAIServiceImpl implements OpenAIService {
     }
 
     public void runAssistantResponse(String threadId, String runId) {
-        String runUrl = String.format("https://api.openai.com/v1/threads/%s/runs/%s", threadId, runId);
-        HttpHeaders headers = createHeaders();
-        HttpEntity<String> entity = new HttpEntity<>("", headers);
+        final String runUrl = String.format("https://api.openai.com/v1/threads/%s/runs/%s", threadId, runId);
+        final HttpHeaders headers = createHeaders();
+        final HttpEntity<Void> entity = new HttpEntity<>(headers);
 
-        boolean isInProgress = true;
-        int maxRetries = 10; // Maximum number of retries for queued status
+        final int maxRetries = 20;
+        final long pollIntervalMillis = 5000;
         int retryCount = 0;
 
-        while (isInProgress && retryCount < maxRetries) {
+        while (retryCount < maxRetries) {
             try {
                 ResponseEntity<Map> response = restTemplate.exchange(
                         runUrl,
@@ -291,39 +291,36 @@ public class OpenAIServiceImpl implements OpenAIService {
                         Map.class
                 );
 
-                // Extracting status from response
                 Map<String, Object> responseBody = response.getBody();
-                if (responseBody != null && responseBody.containsKey("status")) {
-                    String status = (String) responseBody.get("status");
-
-                    if ("in_progress".equals(status)) {
-                        System.out.println("Status: in progress. Waiting...");
-                        Thread.sleep(5000); // Wait for 5 seconds before checking again
-                    } else if ("queued".equals(status)) {
-                        retryCount++;
-                        System.out.println("Status: queued. Retry attempt: " + retryCount);
-                        Thread.sleep(5000); // Wait before retrying
-                    } else {
-                        isInProgress = false;
-                        System.out.println("Final Status: " + status);
-                    }
-                } else {
+                if (responseBody == null || !responseBody.containsKey("status")) {
                     System.err.println("Unexpected response: " + responseBody);
                     throw new ErrorProcessingAIResponseException(messageSource);
                 }
+
+                String status = (String) responseBody.get("status");
+                switch (status) {
+                    case "in_progress":
+                    case "queued":
+                        retryCount++;
+                        System.out.printf("Status: %s. Retry attempt: %d%n", status, retryCount);
+                        Thread.sleep(pollIntervalMillis);
+                        break;
+                    default:
+                        System.out.println("Final Status: " + status);
+                        return;
+                }
+
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
                 System.err.println("Thread interrupted: " + e.getMessage());
-                break;
+                return;
             } catch (Exception e) {
                 System.err.println("Error while checking run status: " + e.getMessage());
-                break;
+                return;
             }
         }
 
-        if (retryCount >= maxRetries) {
-            System.err.println("Status stuck on queued. Exceeded retry limit.");
-        }
+        System.err.println("Status stuck on queued/in_progress. Exceeded retry limit.");
     }
 
     private String getFullAssistantResponseText(String threadId) {
@@ -340,21 +337,29 @@ public class OpenAIServiceImpl implements OpenAIService {
         );
 
         if (response.getStatusCode().is2xxSuccessful()) {
-            String responseBodyString = Objects.requireNonNull(response).toString();
-
-            int valueStartIndex = responseBodyString.indexOf("value=");
-            if (valueStartIndex == -1) {
-                throw new IllegalStateException("Could not find 'value=' in the response.");
+            Map<String, Object> responseBody = response.getBody();
+            if (responseBody == null || !responseBody.containsKey("data")) {
+                throw new IllegalStateException("No messages found in the thread response.");
             }
 
-            valueStartIndex += "value=".length();
+            List<Map<String, Object>> messages = (List<Map<String, Object>>) responseBody.get("data");
+            StringBuilder fullResponse = new StringBuilder();
 
-            int annotationsStartIndex = responseBodyString.indexOf("annotations", valueStartIndex);
-            if (annotationsStartIndex == -1) {
-                annotationsStartIndex = responseBodyString.length();
+            for (Map<String, Object> message : messages) {
+                String role = (String) message.get("role");
+                if ("assistant".equals(role)) {  // Only get assistant messages
+                    List<Map<String, Object>> contentList = (List<Map<String, Object>>) message.get("content");
+                    for (Map<String, Object> content : contentList) {
+                        if ("text".equals(content.get("type"))) {
+                            Map<String, Object> textContent = (Map<String, Object>) content.get("text");
+                            String value = (String) textContent.get("value");
+                            fullResponse.append(value).append("\n");
+                        }
+                    }
+                }
             }
 
-            return responseBodyString.substring(valueStartIndex, annotationsStartIndex).trim();
+            return fullResponse.toString().trim();
         } else {
             throw new ErrorProcessingAIResponseException(messageSource);
         }
