@@ -1,10 +1,10 @@
-<img src="https://life.bbca.bg/img/rose-lady.svg" alt="Bulgarian Breast Cancer Association" width="100" align="left" style="margin-right: 10px;" />
+<img src="https://life.bbca.bg/wp-content/uploads/2024/12/rose-lady.png" alt="Bulgarian Breast Cancer Association" width="100" align="left" style="margin-right: 10px;" />
 <br>
 
 # LifeAI: AI-Powered Support for Breast Cancer Patients  
 <br>
 
-### [Demo](https://lifeai.up.railway.app/info)&nbsp;&nbsp;&nbsp;&nbsp;[Presentation](https://www.canva.com/design/DAGfdV51uIc/1TrZgGRO1gdiulivfzucrQ/edit?utm_content=DAGfdV51uIc&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
+### [Website](https://lifeai.up.railway.app/info)&nbsp;&nbsp;&nbsp;&nbsp;[Presentation](https://www.canva.com/design/DAGfdV51uIc/1TrZgGRO1gdiulivfzucrQ/edit?utm_content=DAGfdV51uIc&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)&nbsp;&nbsp;&nbsp;&nbsp;[Brochure](https://simplebooklet.com/lifeai#page=1)&nbsp;&nbsp;&nbsp;&nbsp;[Video](https://drive.google.com/file/d/1Gy1dATp1tq8SAUITq5LEjfA0yWrFaWkh/view?usp=sharing)
 
 ## 🌟 About LifeAI  
 
