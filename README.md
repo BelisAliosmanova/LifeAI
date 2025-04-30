@@ -87,6 +87,6 @@ We welcome feedback and collaboration!
 
 ## 💡 Acknowledgments  
 
-This project is made possible by the dedication of healthcare professionals, developers, and the unwavering support of the **Bulgarian Breast Cancer Association (BBCA)**.  
+This project is made possible by the dedication of healthcare professionals, developers, and the unwavering support of the **Bulgarian Breast Cancer Association (BBCA)**, **The Pilot Product** and **TEVA Bulgaria**.  
 
 Together, let’s create a future where patients feel empowered and informed.
